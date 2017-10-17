@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro contribuinte</title>
+    </h:head> 
+    <h:body> 
+        <p:fieldset legend="CADASTRAR CONTRIBUINTES">
+            <h:form id="cadastro">
+                <p:panelGrid >                     
+                    <p:outputLabel for="nome" value="Nome:" />
+                    <p:inputText id="nome" value="#{contribuinteBean.contribuinte.nome}" style="width:660px"  />
+                    
+                    <p:outputLabel for="sexo" value="  Sexo: " />
+                    <p:selectOneMenu id="sexo" value="#{contribuinteBean.contribuinte.sexo}" style="width:135px" converter="sexoConverter" >
+                    <f:selectItem itemLabel="escolha o sexo" itemDisabled="true" />
+                    <f:selectItems value="#{contribuinteBean.sexos}" var="sexo" itemLabel="#{sexo.nome}" itemValue="#{sexo}" />
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="grupo" value="  Grupo: " />
+                    <p:selectOneMenu id="grupo" value="#{grupo}" style="width:200px"/> 
+                    <br />
+                    <br /> 
+                               
+                    <p:outputLabel for="datNasc" value="Data Nascimento: " style="width:393px"/>
+                    <p:calendar id="datNasc" value="#{contribuinteBean.contribuinte.datNasc.time}" locale="pt_BR" pattern="dd/MM/yyyy" />
+ 
+                    <p:outputLabel for="cidade" value="   Naturalidade: " />
+                    <p:selectOneMenu id="cidade" value="#{contribuinteBean.contribuinte.codNatural}"  style="width:285px" converter="cidadeConverter">                      
+                    <f:selectItem itemLabel="Selecione um município"  itemDisabled="true" />
+                    <f:selectItems value="#{contribuinteBean.cidades}" var="cidade" itemLabel="#{cidade.nome}" itemValue="#{cidade}" />                                
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="rg" value="  RG nº: " />
+                    <p:inputText id="rg" value="#{contribuinteBean.contribuinte.rg}" style="width:120px"  />
+                     <p:outputLabel for="expedidor" value="   Expedidor: " />
+                     <p:selectOneMenu id="expedidor" value="#{contribuinteBean.contribuinte.codExpedidor}"  style="width:100px" converter="expedidorConverter">                      
+                    <f:selectItem itemLabel="Selecione um órgão"  itemDisabled="true" />
+                    <f:selectItems value="#{contribuinteBean.expedidores}" var="expedidor" itemLabel="#{expedidor.expedicao}" itemValue="#{expedidor}" />                                
+                    </p:selectOneMenu>
+                    <br />
+                    <br /> 
+                    <p:outputLabel for="cpf" value="CPF nº:" />
+                    <p:inputMask id="cpf" value="#{contribuinteBean.contribuinte.cpf}" mask="999.999.999-99"  style="width:150px"  />
+                    
+                    <p:outputLabel for="sus" value="  Sus nº: " />
+                    <p:inputText id="sus" value="#{contribuinteBean.contribuinte.cartaoSus}" style="width:175px" />                                                      
+                    <p:outputLabel for="profissao" value="  Profissão: " />
+                    <p:selectOneMenu id="profissao" value="#{contribuinteBean.contribuinte.codProfissaoPrinc}" style="width:280px" converter="profissaoConverter">                      
+                    <f:selectItem itemLabel="Selecione uma profissão" itemDisabled="true" />
+                    <f:selectItems value="#{contribuinteBean.profissoes}" var="profissao" itemLabel="#{profissao.profissao}" itemValue="#{profissao}" />                                
+                    </p:selectOneMenu>
+                    <p:outputLabel for="escolaridade" value="  Escolaridade: " />
+                    <p:selectOneMenu id="escolaridade" value="#{contribuinteBean.contribuinte.escolaridade}" style="width:215px" converter="escolaridadeConverter">                      
+                    <f:selectItem itemLabel="Selecione um item" itemDisabled="true" />
+                    <f:selectItems value="#{contribuinteBean.escolaridades}" var="escolaridade" itemLabel="#{escolaridade.escolaridade}" itemValue="#{escolaridade}" />                                
+                    </p:selectOneMenu>
+                    <br />
+                    <br />
+                
+                    
+                                      
+                    <p:commandButton id="btn_reset" value="Limpar" type="reset"/>
+                    <p:commandButton value="Salvar" action="#{contribuinteBean.salvar}" process="@form" update="@form" /> 
+                </p:panelGrid>
+               
+            </h:form>
+         
+        </p:fieldset>
+        
+    </h:body>
+</html>
